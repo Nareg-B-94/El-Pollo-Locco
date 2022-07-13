@@ -1,22 +1,5 @@
 const level1 = new Level(
     [
-        new Chicken(1120),
-        new Chicken(1620),
-        new Chicken(2000),
-        new Chicken(2400),
-        new Chicken(2700),
-        new Chicken(2900),
-        new Chicken(3000),
-
-        new Chicken2(720),
-        new Chicken2(1250),
-        new Chicken2(1950),
-        new Chicken2(2320),
-        new Chicken2(2800),
-        new Chicken2(3000),
-
-        new Endboss(0),
-
         new Coins(500),
         new Coins(1150),
         new Coins(1435),
@@ -25,6 +8,28 @@ const level1 = new Level(
         new Coins(2568),
         new Coins(2968),
         new Coins(3114),
+        new Coins(200),
+        new Coins(700),
+    ],
+
+    [
+    new Chicken(1120),
+    new Chicken(1620),
+    new Chicken(2000),
+    new Chicken(2400),
+    new Chicken(2700),
+    new Chicken(2900),
+    new Chicken(3000),
+
+    new Chicken2(720),
+    new Chicken2(1250),
+    new Chicken2(1950),
+    new Chicken2(2320),
+    new Chicken2(2800),
+    new Chicken2(3000),
+
+    new Endboss(0),
+
 
 
     ],

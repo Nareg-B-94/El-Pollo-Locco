@@ -43,6 +43,8 @@ class Character extends movableObject {
                 this.reverseDirection = true;
             }
             this.world.cameraX = -this.x + 100;
+
+            console.log(this.x);
         }, 1000 / 60);
 
 
