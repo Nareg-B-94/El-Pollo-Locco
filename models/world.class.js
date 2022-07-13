@@ -13,7 +13,7 @@ class World {
         this.setWorld();
     }
 
-    setWorld(){
+    setWorld() {
         this.character.world = this;
     }
 
@@ -23,7 +23,7 @@ class World {
         this.ctx.translate(this.cameraX, 0);
         this.addObjectsToMap(this.level.backgroundObjekts);
         this.addObjectsToMap(this.level.clouds);
-
+        this.addObjectsToMap(this.level.coins);
         this.addObjectsToMap(this.level.enemies);
         this.addToMap(this.character);
         this.ctx.translate(-this.cameraX, 0);
@@ -45,17 +45,22 @@ class World {
 
 
     addToMap(mo) {
+
         if (mo.reverseDirection) {
             this.ctx.save();
             this.ctx.translate(mo.width, 0);
             this.ctx.scale(-1, 1);
             mo.x = mo.x * -1;
         }
-        this.ctx.drawImage(mo.img, mo.x, mo.y, mo.width, mo.height);
-        if (mo.reverseDirection) {
-            mo.x = mo.x * -1;
-            this.ctx.restore();
-        }
+
+            this.ctx.drawImage(mo.img, mo.x, mo.y, mo.width, mo.height);
+
+
+            if (mo.reverseDirection) {
+                mo.x = mo.x * -1;
+                this.ctx.restore();
+            }
+
     }
 
 }

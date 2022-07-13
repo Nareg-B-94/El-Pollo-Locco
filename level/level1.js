@@ -1,20 +1,48 @@
 const level1 = new Level(
     [
-        new Chicken(),
-        new Chicken(),
-        new Chicken(),
-        new Chicken(),
-        new Chicken(),
-        new Chicken(),
-        new Chicken(),
+        new Chicken(1120),
+        new Chicken(1620),
+        new Chicken(2000),
+        new Chicken(2400),
+        new Chicken(2700),
+        new Chicken(2900),
+        new Chicken(3000),
 
-        new Endboss(),
+        new Chicken2(720),
+        new Chicken2(1250),
+        new Chicken2(1950),
+        new Chicken2(2320),
+        new Chicken2(2800),
+        new Chicken2(3000),
+
+        new Endboss(0),
+
+        new Coins(500),
+        new Coins(1150),
+        new Coins(1435),
+        new Coins(1965),
+        new Coins(2103),
+        new Coins(2568),
+        new Coins(2968),
+        new Coins(3114),
+
 
     ],
 
     [
-        new Cloud(),
-        new Cloud2(),
+        new Cloud(300),
+        new Cloud(1000),
+        new Cloud(1500),
+        new Cloud(2000),
+        new Cloud(2500),
+        new Cloud(3200),
+
+        new Cloud2(600),
+        new Cloud2(1200),
+        new Cloud2(1700),
+        new Cloud2(2200),
+        new Cloud2(2700),
+        new Cloud2(3400),
     ],
 
     [
