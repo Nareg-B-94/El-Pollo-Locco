@@ -15,7 +15,7 @@ class Cloud2 extends movableObject {
     animate() {
         setInterval(() => {
             this.x -= this.speed;
-        }, 1);
+        }, 14);
 
     };
 };

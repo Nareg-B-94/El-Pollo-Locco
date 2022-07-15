@@ -21,7 +21,7 @@ class Cloud extends movableObject {
     moveLeft() {
         setInterval(() => {
             this.x -= this.speed;
-        }, 1);
+        }, 14);
     };
 
 };
