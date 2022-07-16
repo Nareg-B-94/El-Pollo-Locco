@@ -1,4 +1,4 @@
-class Character extends movableObject {
+class Character extends MovableObject {
 
     height = 220;
     width = 120;
@@ -27,6 +27,22 @@ class Character extends movableObject {
         'img/2_character_pepe/3_jump/J-39.png',
     ];
 
+    imagesDead = [
+        'img/2_character_pepe/5_dead/D-51.png',
+        'img/2_character_pepe/5_dead/D-52.png',
+        'img/2_character_pepe/5_dead/D-53.png',
+        'img/2_character_pepe/5_dead/D-54.png',
+        'img/2_character_pepe/5_dead/D-55.png',
+        'img/2_character_pepe/5_dead/D-56.png',
+        'img/2_character_pepe/5_dead/D-57.png',
+    ];
+
+    imagesHurt = [
+        'img/2_character_pepe/4_hurt/H-41.png',
+        'img/2_character_pepe/4_hurt/H-42.png',
+        'img/2_character_pepe/4_hurt/H-43.png',
+    ];
+
     currentImage = 0;
     world;
     jumpingSound = new Audio('audio/jump.mp3');
@@ -39,7 +55,9 @@ class Character extends movableObject {
         super().loadImage('img/2_character_pepe/2_walk/W-21.png');
         this.loadImages(this.imagesAnimated);
         this.loadImages(this.imagesJumping);
-        this.applyGravity()
+        this.loadImages(this.imagesDead);
+        this.loadImages(this.imagesHurt);
+        this.applyGravity();
         this.animate();
     }
 
@@ -48,7 +66,7 @@ class Character extends movableObject {
         setInterval(() => {
             if (this.world.keyboard.right && this.x < this.world.level.levelEndX) {
                 this.moveRight();
-                console.log(this.reverseDirection)
+                // console.log(this.reverseDirection)
             }
             this.world.cameraX = this.x
         }, 1000 / 60);
@@ -57,7 +75,7 @@ class Character extends movableObject {
             if (this.world.keyboard.left && this.x > 0) {
                 this.moveLeft();
                 this.reverseDirection = true;
-                console.log(this.reverseDirection);
+                // console.log(this.reverseDirection);
             }
             this.world.cameraX = -this.x + 100;
 
@@ -66,7 +84,7 @@ class Character extends movableObject {
 
 
         setInterval(() => {
-            if (this.world.keyboard.up && !this.isAboveGround() ) {
+            if (this.world.keyboard.up && !this.isAboveGround()) {
                 this.jump();
             }
 
@@ -74,22 +92,20 @@ class Character extends movableObject {
 
         setInterval(() => {
 
-            if (this.isAboveGround()) {
+            if (this.isDead()) {
+                this.playAnimation(this.imagesDead);
+            } else if (this.isHurt()) {
+                this.playAnimation(this.imagesHurt);
+            } else if (this.isAboveGround()) {
                 this.playAnimation(this.imagesJumping);
-            } else {
-
-                if (this.world.keyboard.right || this.world.keyboard.left) {
-
-                    // Walk animation
-                    this.playAnimation(this.imagesAnimated);
-                };
+            } else if (this.world.keyboard.right || this.world.keyboard.left) {
+                // Walk animation
+                this.playAnimation(this.imagesAnimated);
             }
+
         }, 100);
 
     }
-
-
-
 }
 
 

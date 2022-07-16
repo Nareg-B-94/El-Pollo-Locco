@@ -1,4 +1,4 @@
-class movableObject {
+class MovableObject {
     x = 120;
     y = 280;
     height = 150;
@@ -10,6 +10,8 @@ class movableObject {
     reverseDirection = false;
     speedY = 0;
     acceleration = 1.7;
+    hitPoints = 100;
+    lastHit = 0;
 
     applyGravity() {
         setInterval(() => {
@@ -20,7 +22,7 @@ class movableObject {
         }, 1000 / 25);
     }
 
-    isAboveGround(){
+    isAboveGround() {
         return this.y < 235;
     }
 
@@ -29,16 +31,52 @@ class movableObject {
         this.img.src = path;
     }
 
-    draw(ctx){
+    draw(ctx) {
         ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
     }
 
-    drawFrame(ctx){
-        ctx.beginPath();
-        ctx.lineWidth = '5';
-        ctx.strokeStyle = 'white';
-        ctx.rect(this.x, this.y, this.width, this.height);
-        ctx.stroke();
+    // colliding function
+    isColliding(mo) {
+        return this.x + this.width > mo.x && this.y + this.height > mo.y && this.x < mo.x && this.y < mo.y + mo.height;
+    }
+
+    // taking damage
+    hit() {
+        this.hitPoints -= 5;
+        if (this.hitPoints < 0) {
+            this.hitPoints = 0;
+
+        } else {
+            this.lastHit = new Date().getTime();
+        }
+    }
+
+    isHurt() {
+
+        // difference in getting hurt in ms
+        let timePassed = new Date().getTime() - this.lastHit;
+        timePassed = timePassed / 1000;   // difference in getting hurt in s
+
+        return timePassed < 0.2;
+
+    }
+
+    isDead() {
+        return this.hitPoints == 0;
+    }
+
+    drawFrame(ctx) {
+
+        if (this instanceof Character || this instanceof Chicken || this instanceof Chicken2 || this instanceof Endboss) {
+
+            ctx.beginPath();
+            ctx.lineWidth = '5';
+            ctx.strokeStyle = 'white';
+            ctx.rect(this.x, this.y, this.width, this.height);
+            ctx.stroke();
+
+        }
+
     }
 
     loadImages(array) {
@@ -51,7 +89,7 @@ class movableObject {
     }
 
     playAnimation(images) {
-        let i = this.currentImage % this.imagesAnimated.length
+        let i = this.currentImage % images.length
         let path = images[i];
         this.img = this.imageCache[path];
         this.currentImage++;
@@ -70,6 +108,6 @@ class movableObject {
 
     jump() {
         this.speedY = 20;
-     }
+    }
 
 }

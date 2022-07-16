@@ -32,7 +32,7 @@ window.addEventListener("keydown", (e) => {
     };
 
 
-    console.log(e);
+    // console.log(e);
 
 });
 
@@ -57,6 +57,6 @@ window.addEventListener("keyup", (e) => {
     };
 
 
-    console.log(e);
+    // console.log(e);
 
 });
