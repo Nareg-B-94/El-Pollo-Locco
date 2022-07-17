@@ -5,6 +5,10 @@ class World {
     ctx;
     keyboard;
     cameraX = 0;
+    statusBarHP = new StatusBarHP();
+    statusBarSalsa = new StatusBarSalsa();
+    statusBarCoins = new StatusBarCoins();
+
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
@@ -24,6 +28,7 @@ class World {
                 if (this.character.isColliding(enemy)) {
                     this.character.hit();
                     console.log('collision with Character, hitPoints', this.character.hitPoints);
+                    this.statusBarHP.setPercentage(this.character.hitPoints);
                 }
             });
         }, 200);
@@ -34,6 +39,13 @@ class World {
 
         this.ctx.translate(this.cameraX, 0);
         this.addObjectsToMap(this.level.backgroundObjekts);
+        // --------- letting the Bars move with screen reverse direction.
+        this.ctx.translate(-this.cameraX, 0);
+        this.addToMap(this.statusBarHP);
+        this.addToMap(this.statusBarSalsa);
+        this.addToMap(this.statusBarCoins);
+        // --------- letting the Bars move with screen with direction.
+        this.ctx.translate(this.cameraX, 0);
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.level.bottles);
         this.addObjectsToMap(this.level.coins);
