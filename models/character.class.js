@@ -4,8 +4,10 @@ class Character extends MovableObject {
     width = 120;
     y = 100;
     speed = 5;
-    offsetHeight = 100;
-    offsetWidth = 80;
+    offsetRight = 50;
+    offsetLeft = 50;
+    offsetTop = 100;
+    offsetBottom = 20;
 
 
     imagesAnimated = [

@@ -1,11 +1,76 @@
-body {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
+html {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif,
+    Helvetica, sans-serif;
 }
 
+body {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+}
+h3 {
+    text-shadow: 22px 15px 4px rgba(255,0,0,0.25);
+}
 
 canvas {
-    background-color: black;
+  border-radius: 8px;
+  background-color: black;
+}
+
+.d-none {
+  display: none !important;
+}
+
+.mainDiv {
+  background-image: url(img/bg.webp);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.startPage {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.explainDiv {
+  margin-left: 200px;
+  margin-right: 200px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  font-size: 1.3em;
+  position: absolute;
+  top: 18px;
+}
+
+.startPage button {
+  cursor: pointer;
+  margin-top: 25px;
+  border-radius: 8px;
+  font-size: 1.4em;
+  padding: 25px;
+  background-color: rgb(238, 145, 71);
+}
+
+.startPage img {
+  width: 80%;
+  height: 80%;
+}
+
+.canvasDiv {
+position: absolute;
+
 }

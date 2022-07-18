@@ -2,6 +2,12 @@ let canvas;
 let world;
 let keyboard = new Keyboard();
 
+function start() {
+    document.getElementById('startPage').classList.add('d-none');
+
+    document.getElementById('canvasID').classList.remove('d-none');
+}
+
 function init() {
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);

@@ -28,8 +28,27 @@
     <script src="models/throwaleObject.class.js"></script>
     <link rel="shortcut icon" href="img/favIcon.png" type="image/x-icon" />
   </head>
-  <body onload="init()">
-    <h1>El Pollo Locco</h1>
-    <canvas id="canvas" width="720" height="480"></canvas>
+  <body>
+    <div class="mainDiv">
+      <h1>El Pollo Locco</h1>
+      <h3>The <b> MEXICAN MARIO :D </b></h3>
+      <div id="startPage" class="startPage">
+        <div class="explainDiv">
+          Controls :
+          <span>
+            Arrow Up &nbsp; &uarr; &nbsp; :&nbsp; Jump &nbsp; || &nbsp; Arrow
+            Right &nbsp; &rarr; &nbsp; :&nbsp; Move right&nbsp; || &nbsp; Arrow
+            Left &nbsp; &larr; &nbsp; :&nbsp; Move left&nbsp; || &nbsp; Space
+            &nbsp; : &nbsp; Throw Hot-Salsa</span
+          >
+        </div>
+        <img src="img/9_intro_outro_screens/start/startscreen_1.png" alt="" />
+        <button onclick="start(), init()">start</button>
+      </div>
+
+      <div id="canvasID" class="canvasDiv d-none">
+        <canvas id="canvas" width="720" height="480"></canvas>
+      </div>
+    </div>
   </body>
 </html>

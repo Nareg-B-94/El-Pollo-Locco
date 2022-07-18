@@ -8,7 +8,11 @@ class MovableObject extends DrawableObjects {
     coinsCollected = 0;
     salsaCollected = 0;
     coinsCollectedSound = new Audio('audio/collectCoins.mp3');
-    salsaCollectedSound = new Audio('audio/collectBottle.mp3')
+    salsaCollectedSound = new Audio('audio/collectBottle.mp3');
+    offsetRight = 0;
+    offsetLeft = 0;
+    offsetTop = 0;
+    offsetBottom = 0;
 
 
     applyGravity() {
@@ -32,8 +36,12 @@ class MovableObject extends DrawableObjects {
     }
 
     // colliding function
+    // isColliding(mo) {
+    //     return this.x + this.width > mo.x && this.y + this.height > mo.y && this.x < mo.x && this.y < mo.y + mo.height;
+    // }
     isColliding(mo) {
-        return this.x + this.offsetHeight > mo.x && this.y + this.offsetHeight > mo.y && this.x < mo.x && this.y < mo.y + mo.offsetHeight;
+        return this.x + this.width - this.offsetRight > mo.x + mo.offsetLeft &&
+        this.y + this.height - this.offsetBottom > mo.y + mo.offsetTop && this.x + this.offsetLeft < mo.x +mo.width - mo.offsetRight && this.y + this.offsetTop < mo.y + mo.height - mo.offsetBottom;
     }
 
     // taking damage
@@ -48,7 +56,7 @@ class MovableObject extends DrawableObjects {
     }
 
     // collecting Coins
-    collectCoins(){
+    collectCoins() {
         if (this.coinsCollected < 100) {
             this.coinsCollected += 20;
             this.coinsCollectedSound.play();
@@ -56,7 +64,7 @@ class MovableObject extends DrawableObjects {
 
     }
 
-    collectBottles(){
+    collectBottles() {
         if (this.salsaCollected < 100) {
             this.salsaCollected += 20;
             this.salsaCollectedSound.play();

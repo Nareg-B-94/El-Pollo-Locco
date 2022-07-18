@@ -25,11 +25,11 @@ class World {
 
 
     audioMusic() {
+        this.gameMusic.play();
+        this.gameMusic.volume = 0.05;
+        // setTimeout(() => {
 
-        setTimeout(() => {
-            this.gameMusic.play();
-            this.gameMusic.volume = 0.2;
-        }, 2500);
+        // }, 2500);
 
 
     }
