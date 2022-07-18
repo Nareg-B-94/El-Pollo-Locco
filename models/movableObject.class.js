@@ -1,12 +1,14 @@
-class MovableObject extends DrawableObjects{
+class MovableObject extends DrawableObjects {
     speed = 0.1;
     reverseDirection = false;
     speedY = 0;
     acceleration = 1.7;
     hitPoints = 100;
     lastHit = 0;
-
-
+    coinsCollected = 0;
+    salsaCollected = 0;
+    coinsCollectedSound = new Audio('audio/collectCoins.mp3');
+    salsaCollectedSound = new Audio('audio/collectBottle.mp3')
 
 
     applyGravity() {
@@ -14,12 +16,19 @@ class MovableObject extends DrawableObjects{
             if (this.isAboveGround() || this.speedY > 0) {
                 this.y -= this.speedY;
                 this.speedY -= this.acceleration;
+
             };
         }, 1000 / 25);
     }
 
     isAboveGround() {
-        return this.y < 235;
+        // in order to let the bottle to fall to ground
+        if (this instanceof ThrowableObject) {
+            return true;
+
+        } else {
+            return this.y < 235;
+        }
     }
 
     // colliding function
@@ -38,6 +47,23 @@ class MovableObject extends DrawableObjects{
         }
     }
 
+    // collecting Coins
+    collectCoins(){
+        if (this.coinsCollected < 100) {
+            this.coinsCollected += 20;
+            this.coinsCollectedSound.play();
+        }
+
+    }
+
+    collectBottles(){
+        if (this.salsaCollected < 100) {
+            this.salsaCollected += 20;
+            this.salsaCollectedSound.play();
+        }
+
+    }
+
     isHurt() {
 
         // difference in getting hurt in ms
@@ -50,6 +76,7 @@ class MovableObject extends DrawableObjects{
 
     isDead() {
         return this.hitPoints == 0;
+
     }
 
     playAnimation(images) {
@@ -57,6 +84,8 @@ class MovableObject extends DrawableObjects{
         let path = images[i];
         this.img = this.imageCache[path];
         this.currentImage++;
+
+
     }
 
     moveRight() {

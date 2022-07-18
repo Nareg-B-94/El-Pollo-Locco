@@ -8,6 +8,8 @@ class World {
     statusBarHP = new StatusBarHP();
     statusBarSalsa = new StatusBarSalsa();
     statusBarCoins = new StatusBarCoins();
+    throwableObject = [];
+    gameMusic = new Audio('audio/gameMusic.mp3');
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -15,23 +17,75 @@ class World {
         this.keyboard = keyboard;
         this.draw();
         this.setWorld();
-        this.checkCollisions();
+        this.run();
+        this.audioMusic();
+
+    }
+
+
+
+    audioMusic() {
+
+        setTimeout(() => {
+            this.gameMusic.play();
+            this.gameMusic.volume = 0.2;
+        }, 2500);
+
+
     }
 
     setWorld() {
         this.character.world = this;
     }
 
-    checkCollisions() {
+    run() {
         setInterval(() => {
-            this.level.enemies.forEach((enemy) => {
-                if (this.character.isColliding(enemy)) {
-                    this.character.hit();
-                    console.log('collision with Character, hitPoints', this.character.hitPoints);
-                    this.statusBarHP.setPercentage(this.character.hitPoints);
-                }
-            });
-        }, 200);
+            this.checkCollisions();
+            this.checkCollisionsWithCoins()
+            this.checkThrowObject();
+            this.checkCollisionsWithBottles();
+
+        }, 100);
+    }
+
+    checkThrowObject() {
+        if (this.keyboard.space) {
+            let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100)
+            this.throwableObject.push(bottle);
+        }
+    }
+
+    checkCollisions() {
+        this.level.enemies.forEach((enemy) => {
+            if (this.character.isColliding(enemy)) {
+                this.character.hit();
+                this.statusBarHP.setPercentage(this.character.hitPoints);
+            }
+        });
+    }
+
+    checkCollisionsWithCoins() {
+
+        this.level.coins.forEach((coin, index) => {
+            if (this.character.isColliding(coin)) {
+                this.character.collectCoins();
+                this.statusBarCoins.setNumberOfCoins(this.character.coinsCollected);
+                this.level.coins.splice(index, 1);
+
+            }
+        });
+
+    }
+    checkCollisionsWithBottles() {
+
+        this.level.bottles.forEach((salsa, index) => {
+            if (this.character.isColliding(salsa)) {
+                this.character.collectBottles();
+                this.statusBarSalsa.setNumberOfSalsa(this.character.salsaCollected);
+                this.level.bottles.splice(index, 1);
+            }
+        });
+
     }
 
     draw() {
@@ -39,6 +93,12 @@ class World {
 
         this.ctx.translate(this.cameraX, 0);
         this.addObjectsToMap(this.level.backgroundObjekts);
+        this.addObjectsToMap(this.level.clouds);
+        this.addObjectsToMap(this.level.bottles);
+        this.addObjectsToMap(this.level.coins);
+        this.addObjectsToMap(this.level.enemies);
+        this.addObjectsToMap(this.throwableObject);
+
         // --------- letting the Bars move with screen reverse direction.
         this.ctx.translate(-this.cameraX, 0);
         this.addToMap(this.statusBarHP);
@@ -46,10 +106,6 @@ class World {
         this.addToMap(this.statusBarCoins);
         // --------- letting the Bars move with screen with direction.
         this.ctx.translate(this.cameraX, 0);
-        this.addObjectsToMap(this.level.clouds);
-        this.addObjectsToMap(this.level.bottles);
-        this.addObjectsToMap(this.level.coins);
-        this.addObjectsToMap(this.level.enemies);
         this.addToMap(this.character);
         this.ctx.translate(-this.cameraX, 0);
 
