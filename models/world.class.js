@@ -11,6 +11,7 @@ class World {
     throwableObject = [];
     gameMusic = new Audio('audio/gameMusic.mp3');
 
+
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
@@ -26,13 +27,10 @@ class World {
 
     audioMusic() {
         this.gameMusic.play();
-        this.gameMusic.volume = 0.05;
-        // setTimeout(() => {
-
-        // }, 2500);
-
-
+        this.gameMusic.volume = 0.15;
     }
+
+
 
     setWorld() {
         this.character.world = this;
@@ -55,11 +53,30 @@ class World {
         }
     }
 
+    // checkBottleCollision() {
+    //     this.level.enemies.forEach(enemy => {
+    //         if (this.throwableObject.forEach(bottles => {
+    //             if (bottles.isColliding(enemy)) {
+    //                 this.hits += 20;
+    //                 this.throwableObject.splice(0, 1);
+    //                 enemy.
+    //             }
+    //         });) {
+
+    //         }
+    //     });
+
+    //     }
+    // }
+
     checkCollisions() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {
                 this.character.hit();
                 this.statusBarHP.setPercentage(this.character.hitPoints);
+            }
+            if (this.character.isDead()) {
+                this.gameMusic.pause();
             }
         });
     }
@@ -69,6 +86,7 @@ class World {
         this.level.coins.forEach((coin, index) => {
             if (this.character.isColliding(coin)) {
                 this.character.collectCoins();
+
                 this.statusBarCoins.setNumberOfCoins(this.character.coinsCollected);
                 this.level.coins.splice(index, 1);
 

@@ -66,11 +66,9 @@ class Character extends MovableObject {
         this.loadImages(this.imagesHurt);
         this.applyGravity();
         this.animate();
-
-        this.jumpingSound.volume = 0.5;
-        this.looseSound.volume = 0.5;
-        this.hurtSound.volume = 0.5;
-
+        this.jumpingSound.volume = 0.1;
+        this.looseSound.volume = 0.2;
+        this.hurtSound.volume = 0.2;
 
     }
 
@@ -113,6 +111,7 @@ class Character extends MovableObject {
             if (this.isDead()) {
                 this.playAnimation(this.imagesDead);
                 this.looseSound.play();
+
 
                 clearInterval(stopInterval);
 
