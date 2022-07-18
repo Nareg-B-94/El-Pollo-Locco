@@ -6,6 +6,8 @@ class DrawableObjects {
     y = 280;
     height = 150;
     width = 100;
+    // offsetHeight = 80;
+    // offsetWidth = 60;
 
     loadImage(path) {
         this.img = new Image();
@@ -36,6 +38,16 @@ class DrawableObjects {
             ctx.stroke();
 
         }
+
+        // if (this instanceof Character || this instanceof Chicken || this instanceof Chicken2 || this instanceof Endboss) {
+
+        //     ctx.beginPath();
+        //     ctx.lineWidth = '2';
+        //     ctx.strokeStyle = 'red';
+        //     ctx.rect(this.x, this.y, this.offsetWidth, this.offsetHeight);
+        //     ctx.stroke();
+
+        // }
 
     }
 
