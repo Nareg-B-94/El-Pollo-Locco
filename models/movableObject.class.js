@@ -47,7 +47,6 @@ class MovableObject extends DrawableObjects {
         if (this.coinsCollected < 100) {
             this.coinsCollected += 20;
             this.coinsCollectedSound.play();
-
         }
 
     }
@@ -57,7 +56,6 @@ class MovableObject extends DrawableObjects {
         if (this.salsaCollected < 100) {
             this.salsaCollected += 20;
             this.salsaCollectedSound.play();
-
         }
 
     }
@@ -73,6 +71,11 @@ class MovableObject extends DrawableObjects {
         }
     }
 
+    // enemyKilled() {
+    //     this.hitPoints == 0;
+    // }
+
+
     isHurt() {
 
         // difference in getting hurt in ms
@@ -87,7 +90,11 @@ class MovableObject extends DrawableObjects {
         return this.hitPoints == 0;
     }
 
-    bossIsHurt(){
+    isDeadChicken(){
+        return this.isDeadChickenBoolean;
+    }
+
+    bossIsHurt() {
 
     }
 

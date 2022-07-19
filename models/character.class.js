@@ -111,8 +111,6 @@ class Character extends MovableObject {
             if (this.isDead()) {
                 this.playAnimation(this.imagesDead);
                 this.looseSound.play();
-
-
                 clearInterval(stopInterval);
 
             } else if (this.isHurt()) {
