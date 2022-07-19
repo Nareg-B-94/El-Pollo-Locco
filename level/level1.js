@@ -2,13 +2,13 @@ const level1 = new Level(
 
     [
         new Bottles(682),
-        new Bottles(1142),
-        new Bottles(1537),
-        new Bottles(1972),
-        new Bottles(2190),
-        new Bottles(2390),
-        new Bottles(2890),
-        new Bottles(2890),
+        new Bottles(500),
+        new Bottles(1000),
+        new Bottles(1500),
+        new Bottles(1700),
+        new Bottles(2000),
+        new Bottles(2200),
+        new Bottles(2250),
 
     ],
     [
