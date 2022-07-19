@@ -4,6 +4,7 @@ class MovableObject extends DrawableObjects {
     speedY = 0;
     acceleration = 1.7;
     hitPoints = 100;
+    hitPointsBoss = 100;
     lastHit = 0;
     coinsCollected = 0;
     salsaCollected = 0;
@@ -56,6 +57,7 @@ class MovableObject extends DrawableObjects {
         if (this.salsaCollected < 100) {
             this.salsaCollected += 20;
             this.salsaCollectedSound.play();
+            this.salsaCollectedSound.volume = 0.1;
         }
 
     }
@@ -94,8 +96,8 @@ class MovableObject extends DrawableObjects {
         return this.isDeadChickenBoolean;
     }
 
-    bossIsHurt() {
-
+    isDeadBoss() {
+        return this.hitPointsBoss == 0;
     }
 
     playAnimation(images) {

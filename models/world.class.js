@@ -12,6 +12,7 @@ class World {
     gameMusic = new Audio('audio/gameMusic.mp3');
     chick1Dead = new Audio('audio/chicken1.mp3');
     chick2Dead = new Audio('audio/chicken2.mp3');
+    winMusic = new Audio('audio/win.mp3');
 
 
 
@@ -23,7 +24,6 @@ class World {
         this.setWorld();
         this.run();
         this.audioMusic();
-
     }
 
 
@@ -48,6 +48,7 @@ class World {
             this.checkCollisionsWithCoins()
             this.checkThrowObject();
             this.checkCollisionsWithBottles();
+            this.killBossWithSalsa();
             // this.throwBottle();
 
         }, 100);
@@ -57,17 +58,6 @@ class World {
         }, 1000 / 60);
     }
 
-    // throwBottle() {
-    //     if (this.throwableObject == 0) {
-
-    //     }
-    //     if (this.keyboard.space) {
-    //         this.statusBarSalsa.numberOfSalsa -=1;
-    //         this.keyboard.space = false;
-    //         this.throwableObject.splice(0, 1);
-
-    //     }
-    // }
 
     checkThrowObject() {
         if (this.keyboard.space && this.character.salsaCollected > 0) {
@@ -81,30 +71,18 @@ class World {
         }
     }
 
-    // checkBottleCollision() {
-    //     this.level.enemies.forEach(enemy => {
-    //         if (this.throwableObject.forEach(bottles => {
-    //             if (bottles.isColliding(enemy)) {
-    //                 this.hits += 20;
-    //                 this.throwableObject.splice(0, 1);
-    //                 enemy.
-    //             }
-    //         });) {
-
-    //         }
-    //     });
-
-    //     }
-    // }
-    //-------------------------------------------
 
     chickenIsNoneLethal = true;
 
     enemyBeingKilled() {
 
+
         this.level.enemies.forEach((enemy, index) => {
+
+
             if (enemy instanceof Chicken || enemy instanceof Chicken2) {
                 if (this.character.isColliding(enemy)) {
+
                     if (this.character.isAboveGround()) {
 
                         this.chickenIsNoneLethal = false;
@@ -112,8 +90,10 @@ class World {
                         enemy.isDeadChickenBoolean = true;
                         this.level.enemies.splice(index, 1);
                         this.chick1Dead.play();
+                        this.chick1Dead.volume = 0.1;
                     };
-            }
+                }
+
 
                 setTimeout(() => {
                     this.chickenIsNoneLethal = true;
@@ -122,24 +102,28 @@ class World {
 
             }
 
-
-
-
-            // if (!this.character.isDead() && !enemy.isDead() && !this.character.isHurt() && this.character.isColliding(enemy)) {
-
-            //     if (this.character.isAboveGround()) {
-            //         console.log('beingkilled')
-            //         enemy.enemyKilled();
-            //         this.chick1Dead.play();
-            //         this.chick1Dead.volume = 0.2;
-            //     } else {
-            //         // this.character.hit();
-            //         // this.statusBarHP.setPercentage(this.character.hitPoints);
-            //         this.checkCollisions();
-            //     }
-
-            // }
         });
+    }
+
+    killBossWithSalsa() {
+
+        this.throwableObject.forEach(bottles => {
+            let endboss = this.level.endboss[0]
+            if (this.throwableObject.length > 0) {
+                if (endboss.isColliding(bottles)) {
+                    this.throwableObject.splice(bottles, 1);
+
+                    if (this.level.endboss[0].hitPointsBoss > 0) {
+                        this.level.endboss[0].hitPointsBoss -= 20;
+                        if (this.level.endboss[0].hitPointsBoss == 0) {
+                            this.gameOver();
+                        }
+                    }
+                }
+            }
+
+        });
+
     }
 
     checkCollisions() {
@@ -161,6 +145,11 @@ class World {
                 // this.keyboard.space = false;
             }
         });
+    }
+
+    gameOver() {
+        this.gameMusic.pause();
+        this.winMusic.play();
     }
 
     checkCollisionsWithCoins() {
@@ -198,6 +187,7 @@ class World {
         this.addObjectsToMap(this.level.bottles);
         this.addObjectsToMap(this.level.coins);
         this.addObjectsToMap(this.level.enemies);
+        this.addObjectsToMap(this.level.endboss);
         this.addObjectsToMap(this.throwableObject);
 
         // --------- letting the Bars move with screen reverse direction.

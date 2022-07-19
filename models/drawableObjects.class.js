@@ -33,7 +33,7 @@ class DrawableObjects {
 
             ctx.beginPath();
             ctx.lineWidth = '5';
-            ctx.strokeStyle = 'white';
+            ctx.strokeStyle = 'transparent';
             ctx.rect(this.x, this.y, this.width, this.height);
             ctx.stroke();
 

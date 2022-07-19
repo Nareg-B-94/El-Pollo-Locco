@@ -26,6 +26,8 @@ class Endboss extends MovableObject {
 
 
 
+
+
     constructor(x) {
         super().loadImage(this.imagesAnimated[0]);
         this.loadImages(this.imagesAnimated);
@@ -37,15 +39,16 @@ class Endboss extends MovableObject {
 
     animate() {
         setInterval(() => {
-
-            if (this.isHurt()) {
-                this.playAnimation(this.imagesAnimated && this.imagesHurt);
-            }
-
-            if (this.isDead()) {
+            if (this.isDeadBoss()) {
                 this.playAnimation(this.imagesDead);
             }
-            this.playAnimation(this.imagesAnimated);
+            else if
+             (this.isHurt()) {
+                this.playAnimation(this.imagesAnimated && this.imagesHurt);
+            }
+            // console.log(this.isDeadBoss);
+            else { this.playAnimation(this.imagesAnimated); }
+
         }, 150);
 
         setInterval(() => {
