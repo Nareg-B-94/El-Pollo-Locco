@@ -8,6 +8,12 @@ function start() {
     document.getElementById('canvasID').classList.remove('d-none');
 }
 
+function resart(){
+    if (gameOverWin()) {
+
+}
+}
+
 function init() {
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);

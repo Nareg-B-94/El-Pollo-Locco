@@ -72,6 +72,53 @@ canvas {
   color: aliceblue;
 }
 
+.restartDiv {
+  display: flex;
+  justify-content: center;
+  z-index: 2;
+}
+
+.restartDiv button {
+  cursor: pointer;
+  margin-top: 25px;
+  border-radius: 8px;
+  font-size: 1.4em;
+  padding: 25px;
+  background-color: rgb(238, 145, 71);
+  color: aliceblue;
+}
+
+.gameOverWin {
+  width: 900px;
+  height: 1500px;
+  position: absolute;
+  animation: myAnim1 1.5s ease-in-out 0s 1 normal forwards;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+@keyframes myAnim1 {
+	0% {
+		opacity: 0;
+		transform: rotate(-540deg) scale(0);
+	}
+
+	100% {
+		opacity: 1;
+		transform: rotate(0) scale(1);
+	}
+}
+
+.gameOverWin img {
+  background-position: center;
+  background-size: cover;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+}
+
 .startPage img {
   width: 60%;
 }

@@ -13,7 +13,8 @@ class World {
     chick1Dead = new Audio('audio/chicken1.mp3');
     chick2Dead = new Audio('audio/chicken2.mp3');
     winMusic = new Audio('audio/win.mp3');
-
+    looseSound = new Audio('audio/loose.mp3');
+    bottleSmashSound = new Audio('audio/bottleSmash.mp3');
 
 
     constructor(canvas, keyboard) {
@@ -31,6 +32,8 @@ class World {
     audioMusic() {
         this.gameMusic.play();
         this.gameMusic.volume = 0.15;
+        this.looseSound.volume = 0.2;
+        this.bottleSmashSound.volume = 0.5;
     }
 
 
@@ -43,13 +46,13 @@ class World {
         setInterval(() => {
 
 
-            // this.gameOver();
+
             this.checkCollisions();
             this.checkCollisionsWithCoins()
             this.checkThrowObject();
             this.checkCollisionsWithBottles();
             this.killBossWithSalsa();
-            // this.throwBottle();
+
 
         }, 100);
         setInterval(() => {
@@ -58,16 +61,14 @@ class World {
         }, 1000 / 60);
     }
 
-
     checkThrowObject() {
         if (this.keyboard.space && this.character.salsaCollected > 0) {
-
 
             let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100)
             this.throwableObject.push(bottle);
             this.character.salsaCollected -= 20;
             this.statusBarSalsa.setNumberOfSalsa(this.character.salsaCollected);
-            // this.statusBarSalsa.resolveImageIndex();
+
         }
     }
 
@@ -86,8 +87,9 @@ class World {
                     if (this.character.isAboveGround()) {
 
                         this.chickenIsNoneLethal = false;
-                        console.log(this.chickenIsNoneLethal)
+
                         enemy.isDeadChickenBoolean = true;
+
                         this.level.enemies.splice(index, 1);
                         this.chick1Dead.play();
                         this.chick1Dead.volume = 0.1;
@@ -97,7 +99,7 @@ class World {
 
                 setTimeout(() => {
                     this.chickenIsNoneLethal = true;
-                    console.log(this.chickenIsNoneLethal)
+
                 }, 300);
 
             }
@@ -111,12 +113,14 @@ class World {
             let endboss = this.level.endboss[0]
             if (this.throwableObject.length > 0) {
                 if (endboss.isColliding(bottles)) {
+                    this.bottleSmashSound.play();
+
                     this.throwableObject.splice(bottles, 1);
 
                     if (this.level.endboss[0].hitPointsBoss > 0) {
                         this.level.endboss[0].hitPointsBoss -= 20;
                         if (this.level.endboss[0].hitPointsBoss == 0) {
-                            this.gameOver();
+                            this.gameOverWin();
                         }
                     }
                 }
@@ -135,21 +139,29 @@ class World {
                 }
             }
             if (this.character.isDead()) {
-                this.gameMusic.pause();
-                // this.gameOver();
-
-                // this.keyboard.down = false;
-                // this.keyboard.up = false;
-                // this.keyboard.left = false;
-                // this.keyboard.right = false;
-                // this.keyboard.space = false;
+                this.gameOverLose();
             }
         });
     }
 
-    gameOver() {
+    gameOverLose() {
+        this.gameMusic.pause();
+        this.looseSound.play();
+        this.keyboard.down = false;
+        this.keyboard.up = false;
+        this.keyboard.right = false;
+        this.keyboard.left = false;
+        this.keyboard.space = false;
+    }
+
+    gameOverWin() {
         this.gameMusic.pause();
         this.winMusic.play();
+        this.keyboard.down = false;
+        this.keyboard.up = false;
+        this.keyboard.right = false;
+        this.keyboard.left = false;
+        this.keyboard.space = false;
     }
 
     checkCollisionsWithCoins() {

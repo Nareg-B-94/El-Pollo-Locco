@@ -51,7 +51,7 @@ class Character extends MovableObject {
     world;
     jumpingSound = new Audio('audio/jump.mp3');
     hurtSound = new Audio('audio/hurt.mp3');
-    looseSound = new Audio('audio/loose.mp3');
+
 
 
 
@@ -67,7 +67,6 @@ class Character extends MovableObject {
         this.applyGravity();
         this.animate();
         this.jumpingSound.volume = 0.1;
-        this.looseSound.volume = 0.2;
         this.hurtSound.volume = 0.2;
 
     }

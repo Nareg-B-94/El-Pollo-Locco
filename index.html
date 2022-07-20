@@ -33,7 +33,7 @@
     <div class="mainDiv">
       <div class="welcomeDiv">
       <h1>El Pollo Locco</h1>
-      <h3>The <b> MEXICAN MARIO &#128517	 </b></h3>
+      <h3>The <b> MEXICAN MARIO &#128517	</b></h3>
       </div>
       <div id="startPage" class="startPage">
         <div class="explainDiv">
@@ -48,6 +48,12 @@
         <img src="img/9_intro_outro_screens/start/startscreen_1.png" alt="" />
         <button onclick="start(), init()">START</button>
       </div>
+
+      <div class="restartDiv d-none"><button onclick="restart()" class="restartBtn" id="restartBtn">Restart</button></div>
+
+<div class="gameOverWin">
+  <img src="img/youwin.jpg" alt="">
+</div>
 
       <div id="canvasID" class="canvasDiv d-none">
         <canvas id="canvas" width="720" height="480"></canvas>

@@ -16,7 +16,6 @@ class MovableObject extends DrawableObjects {
     offsetTop = 0;
     offsetBottom = 0;
 
-
     applyGravity() {
         setInterval(() => {
             if (this.isAboveGround() || this.speedY > 0) {
@@ -41,6 +40,7 @@ class MovableObject extends DrawableObjects {
     isColliding(mo) {
         return this.x + this.width - this.offsetRight > mo.x + mo.offsetLeft &&
             this.y + this.height - this.offsetBottom > mo.y + mo.offsetTop && this.x + this.offsetLeft < mo.x + mo.width - mo.offsetRight && this.y + this.offsetTop < mo.y + mo.height - mo.offsetBottom;
+
     }
 
     // collecting Coins
@@ -72,11 +72,6 @@ class MovableObject extends DrawableObjects {
             this.lastHit = new Date().getTime();
         }
     }
-
-    // enemyKilled() {
-    //     this.hitPoints == 0;
-    // }
-
 
     isHurt() {
 
