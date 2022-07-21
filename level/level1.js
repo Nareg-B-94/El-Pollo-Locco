@@ -1,14 +1,14 @@
 const level1 = new Level(
 
     [
-        new Bottles(682),
+        new Bottles(382),
         new Bottles(500),
+        new Bottles(800),
         new Bottles(1000),
-        new Bottles(1500),
+        new Bottles(1200),
         new Bottles(1700),
+        new Bottles(1800),
         new Bottles(2000),
-        new Bottles(2200),
-        new Bottles(2250),
 
     ],
     [
@@ -25,21 +25,23 @@ const level1 = new Level(
     ],
 
     [
-        new Chicken(950),
+        new Chicken(660),
         // new Chicken(1120),
-        new Chicken(1620),
-        new Chicken(2000),
+        new Chicken(1000),
+        new Chicken(1500),
         // new Chicken(2400),
-        new Chicken(2700),
-        new Chicken(2900),
+        new Chicken(1700),
+        new Chicken(2000),
         // new Chicken(2800),
 
+
+        new Chicken2(660),
         new Chicken2(920),
         new Chicken2(1250),
         // new Chicken2(1950),
-        new Chicken2(2320),
+        new Chicken2(2020),
         // new Chicken2(2800),
-        new Chicken2(2850),
+
         // new Chicken2(2800),
 
 

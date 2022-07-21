@@ -1,6 +1,7 @@
 html {
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif,
     Helvetica, sans-serif;
+    overflow-x: hidden;
 }
 
 body {
@@ -9,6 +10,7 @@ body {
   flex-direction: column;
   align-items: center;
   margin: 0;
+
 }
 
 h1 h3 {
@@ -35,8 +37,9 @@ canvas {
   background-image: url(img/bg.webp);
   background-repeat: no-repeat;
   background-size: cover;
-  height: 100vh;
+  height: 100%;
   width: 100%;
+
 }
 
 .startPage {
@@ -48,8 +51,8 @@ canvas {
 }
 
 .explainDiv {
-  margin-left: 200px;
-  margin-right: 200px;
+  margin-left: 350px;
+  margin-right: 350px;
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -64,7 +67,7 @@ canvas {
 
 .startPage button {
   cursor: pointer;
-  margin-top: 25px;
+  padding-top: 25px;
   border-radius: 8px;
   font-size: 1.4em;
   padding: 25px;
@@ -132,4 +135,18 @@ canvas {
   left: 0;
   right: 0;
   bottom: 0;
+}
+
+
+@media only screen and (max-width : 920px) {
+
+  canvas {
+    width: 100%;
+  }
+
+  .explainDiv  {
+margin-left: 400px;
+  margin-right: 400px;
+  }
+
 }

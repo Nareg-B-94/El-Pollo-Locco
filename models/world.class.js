@@ -156,11 +156,12 @@ class World {
         this.keyboard.right = false;
         this.keyboard.left = false;
         this.keyboard.space = false;
-        this.lose = true;
+
         // this.gameOverLoseVar = true;
         setTimeout(() => {
+            this.lose = true;
             this.looseSound.pause();
-        }, 1700);
+        }, 1500);
         // console.log(this.gameOverLoseVar)
     }
 
@@ -172,9 +173,12 @@ class World {
         this.keyboard.right = false;
         this.keyboard.left = false;
         this.keyboard.space = false;
-        this.win = true;
-        // this.gameOverWinVar = true;
-        console.log(this.gameOverWinVar)
+        setTimeout(() => {
+            this.win = true;
+        }, 1500);
+
+        // // this.gameOverWinVar = true;
+        // console.log(this.gameOverWinVar)
     }
 
     checkCollisionsWithCoins() {
@@ -233,13 +237,14 @@ class World {
             self.draw();
         });
 
-        setInterval(() => {
+
             if (this.lose) {
+
                 this.addToMap(this.gameOverLoseVar);
             } else if (this.win) {
                 this.addToMap(this.gameOverWinVar);
             }
-        }, 100);
+
 
 
     }
