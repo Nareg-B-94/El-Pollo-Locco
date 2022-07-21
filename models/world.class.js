@@ -15,8 +15,10 @@ class World {
     winMusic = new Audio('audio/win.mp3');
     looseSound = new Audio('audio/loose.mp3');
     bottleSmashSound = new Audio('audio/bottleSmash.mp3');
-    gameOverWinVar = false;
-    gameOverLoseVar = false;
+    win = false;
+    lose = false;
+    gameOverWinVar = new GameOverScreenWin();
+    gameOverLoseVar = new GameOverScreen();
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -146,7 +148,7 @@ class World {
         });
     }
 
-        gameOverLose() {
+    gameOverLose() {
         this.gameMusic.pause();
         this.looseSound.play();
         this.keyboard.down = false;
@@ -154,11 +156,12 @@ class World {
         this.keyboard.right = false;
         this.keyboard.left = false;
         this.keyboard.space = false;
-        this.gameOverLoseVar = true;
+        this.lose = true;
+        // this.gameOverLoseVar = true;
         setTimeout(() => {
             this.looseSound.pause();
         }, 1700);
-        console.log(this.gameOverLoseVar)
+        // console.log(this.gameOverLoseVar)
     }
 
     gameOverWin() {
@@ -169,7 +172,8 @@ class World {
         this.keyboard.right = false;
         this.keyboard.left = false;
         this.keyboard.space = false;
-        this.gameOverWinVar = true;
+        this.win = true;
+        // this.gameOverWinVar = true;
         console.log(this.gameOverWinVar)
     }
 
@@ -228,6 +232,16 @@ class World {
         requestAnimationFrame(function () {
             self.draw();
         });
+
+        setInterval(() => {
+            if (this.lose) {
+                this.addToMap(this.gameOverLoseVar);
+            } else if (this.win) {
+                this.addToMap(this.gameOverWinVar);
+            }
+        }, 100);
+
+
     }
 
     addObjectsToMap(objects) {

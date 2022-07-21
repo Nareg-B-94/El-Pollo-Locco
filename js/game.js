@@ -8,18 +8,18 @@ function start() {
     document.getElementById('canvasID').classList.remove('d-none');
 }
 
-function resart(){
+// function resart(){
 
-}
+// }
 
-function gameOverWin() {
-    if (gameOverWinVar == true){
-        setTimeout(() => {
-            document.getElementById('gameWOnDiv').classList.remove('d-none')
-            console.log('removed!')
-        }, 1500);
-    }
-}
+// function gameOverWin() {
+//     if (gameOverWinVar == true){
+//         setTimeout(() => {
+//             document.getElementById('gameWOnDiv').classList.remove('d-none')
+//             console.log('removed!')
+//         }, 1500);
+//     }
+// }
 
 function init() {
     canvas = document.getElementById('canvas');
