@@ -6,6 +6,8 @@ function start() {
     document.getElementById('startPage').classList.add('d-none');
 
     document.getElementById('canvasID').classList.remove('d-none');
+
+    checkIfEndscreen();
 }
 
 
@@ -16,6 +18,18 @@ function init() {
 
     // console.log('my character is', world.character);
 
+}
+
+function checkIfEndscreen() {
+    setInterval(() => {
+      if (world.lose) {
+        document.getElementById('restartBtn').classList.remove('d-none');
+      }
+    }, 100);
+}
+
+function restart() {
+    location.reload();
 }
 
 window.addEventListener("keydown", (e) => {
