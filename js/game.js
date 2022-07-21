@@ -9,9 +9,16 @@ function start() {
 }
 
 function resart(){
-    if (gameOverWin()) {
 
 }
+
+function gameOverWin() {
+    if (gameOverWinVar == true){
+        setTimeout(() => {
+            document.getElementById('gameWOnDiv').classList.remove('d-none')
+            console.log('removed!')
+        }, 1500);
+    }
 }
 
 function init() {

@@ -103,14 +103,14 @@ class Character extends MovableObject {
 
         }, 100);
 
+// let stopInterval =
 
-
-       let stopInterval = setInterval(() => {
+       setInterval(() => {
 
             if (this.isDead()) {
                 this.playAnimation(this.imagesDead);
-                this.looseSound.play();
-                clearInterval(stopInterval);
+                // this.looseSound.play();
+                // clearInterval(stopInterval);
 
             } else if (this.isHurt()) {
                 this.playAnimation(this.imagesHurt);

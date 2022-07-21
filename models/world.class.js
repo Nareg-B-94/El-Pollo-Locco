@@ -15,7 +15,8 @@ class World {
     winMusic = new Audio('audio/win.mp3');
     looseSound = new Audio('audio/loose.mp3');
     bottleSmashSound = new Audio('audio/bottleSmash.mp3');
-
+    gameOverWinVar = false;
+    gameOverLoseVar = false;
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -25,6 +26,7 @@ class World {
         this.setWorld();
         this.run();
         this.audioMusic();
+
     }
 
 
@@ -144,7 +146,7 @@ class World {
         });
     }
 
-    gameOverLose() {
+        gameOverLose() {
         this.gameMusic.pause();
         this.looseSound.play();
         this.keyboard.down = false;
@@ -152,6 +154,11 @@ class World {
         this.keyboard.right = false;
         this.keyboard.left = false;
         this.keyboard.space = false;
+        this.gameOverLoseVar = true;
+        setTimeout(() => {
+            this.looseSound.pause();
+        }, 1700);
+        console.log(this.gameOverLoseVar)
     }
 
     gameOverWin() {
@@ -162,6 +169,8 @@ class World {
         this.keyboard.right = false;
         this.keyboard.left = false;
         this.keyboard.space = false;
+        this.gameOverWinVar = true;
+        console.log(this.gameOverWinVar)
     }
 
     checkCollisionsWithCoins() {
