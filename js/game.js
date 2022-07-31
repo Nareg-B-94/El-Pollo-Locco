@@ -12,6 +12,7 @@ function start() {
 
 
 function init() {
+    initLevel();
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
 
@@ -21,13 +22,14 @@ function init() {
 }
 
 function checkIfEndscreen() {
-    setInterval(() => {
-      if (world.lose) {
+
+    let checkEndScreen =  setInterval(() => {
+      if (world.lose || world.win) {
         document.getElementById('restartBtn').classList.remove('d-none');
+        clearInterval (checkEndScreen)
       }
     }, 100);
 }
-
 function restart() {
     location.reload();
 }

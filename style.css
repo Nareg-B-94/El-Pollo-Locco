@@ -1,7 +1,8 @@
 html {
+
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif,
     Helvetica, sans-serif;
-    overflow-x: hidden;
+
 }
 
 body {
@@ -37,7 +38,7 @@ canvas {
   background-image: url(img/bg.webp);
   background-repeat: no-repeat;
   background-size: cover;
-  height: 100%;
+  height: 100vh;
   width: 100%;
 
 }
@@ -48,6 +49,7 @@ canvas {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  height: 70vh;
 }
 
 .explainDiv {
@@ -59,7 +61,7 @@ canvas {
   text-align: center;
   font-size: 1.3em;
   position: absolute;
-  top: 20px;
+  top: -20px;
 }
 .explainDiv span {
   margin-top: 30px;
@@ -124,6 +126,7 @@ canvas {
 
 .startPage img {
   width: 60%;
+
 }
 
 .canvasDiv {
@@ -145,8 +148,8 @@ canvas {
   }
 
   .explainDiv  {
-margin-left: 400px;
-  margin-right: 400px;
+margin-left: 200px;
+  margin-right: 200px;
   }
 
 }

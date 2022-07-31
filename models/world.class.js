@@ -11,7 +11,6 @@ class World {
     throwableObject = [];
     gameMusic = new Audio('audio/gameMusic.mp3');
     chick1Dead = new Audio('audio/chicken1.mp3');
-    chick2Dead = new Audio('audio/chicken2.mp3');
     winMusic = new Audio('audio/win.mp3');
     looseSound = new Audio('audio/loose.mp3');
     bottleSmashSound = new Audio('audio/bottleSmash.mp3');
@@ -36,8 +35,8 @@ class World {
     audioMusic() {
         this.gameMusic.play();
         this.gameMusic.volume = 0.15;
-        this.looseSound.volume = 0.2;
         this.bottleSmashSound.volume = 0.5;
+
     }
 
 
@@ -48,8 +47,6 @@ class World {
 
     run() {
         setInterval(() => {
-
-
 
             this.checkCollisions();
             this.checkCollisionsWithCoins()
@@ -150,6 +147,7 @@ class World {
 
     gameOverLose() {
         this.gameMusic.pause();
+        this.looseSound.volume = 0.2;
         this.looseSound.play();
         this.keyboard.down = false;
         this.keyboard.up = false;
@@ -157,12 +155,10 @@ class World {
         this.keyboard.left = false;
         this.keyboard.space = false;
 
-        // this.gameOverLoseVar = true;
         setTimeout(() => {
             this.lose = true;
-            this.looseSound.pause();
         }, 1500);
-        // console.log(this.gameOverLoseVar)
+
     }
 
     gameOverWin() {
