@@ -146,6 +146,7 @@ class World {
     }
 
     gameOverLose() {
+        if (!this.lose){
         this.gameMusic.pause();
         this.looseSound.volume = 0.2;
         this.looseSound.play();
@@ -154,10 +155,10 @@ class World {
         this.keyboard.right = false;
         this.keyboard.left = false;
         this.keyboard.space = false;
+        this.lose = true;
+        console.log('lose ist true');
+        }
 
-        setTimeout(() => {
-            this.lose = true;
-        }, 1500);
 
     }
 
@@ -235,8 +236,12 @@ class World {
 
 
             if (this.lose) {
+                setTimeout(() => {
 
-                this.addToMap(this.gameOverLoseVar);
+                    this.lose = true;
+                    this.addToMap(this.gameOverLoseVar);
+                }, 1500);
+
             } else if (this.win) {
                 this.addToMap(this.gameOverWinVar);
             }
