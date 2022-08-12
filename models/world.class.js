@@ -150,11 +150,7 @@ class World {
         this.gameMusic.pause();
         this.looseSound.volume = 0.2;
         this.looseSound.play();
-        this.keyboard.down = false;
-        this.keyboard.up = false;
-        this.keyboard.right = false;
-        this.keyboard.left = false;
-        this.keyboard.space = false;
+        this.keyboard = false;
         this.lose = true;
         console.log('lose ist true');
         }
@@ -165,11 +161,7 @@ class World {
     gameOverWin() {
         this.gameMusic.pause();
         this.winMusic.play();
-        this.keyboard.down = false;
-        this.keyboard.up = false;
-        this.keyboard.right = false;
-        this.keyboard.left = false;
-        this.keyboard.space = false;
+        this.keyboard = false;
         setTimeout(() => {
             this.win = true;
         }, 1500);
@@ -235,13 +227,8 @@ class World {
         });
 
 
-            if (this.lose) {
-                setTimeout(() => {
-
-                    this.lose = true;
+        if (this.lose) {
                     this.addToMap(this.gameOverLoseVar);
-                }, 1500);
-
             } else if (this.win) {
                 this.addToMap(this.gameOverWinVar);
             }

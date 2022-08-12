@@ -53,8 +53,8 @@ canvas {
 }
 
 .explainDiv {
-  margin-left: 350px;
-  margin-right: 350px;
+  margin-left: 150px;
+  margin-right: 150px;
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -77,10 +77,10 @@ canvas {
   color: aliceblue;
 }
 
-.restartDiv {
+.restartButton {
   display: flex;
   justify-content: center;
-  z-index: 2;
+  z-index: 32;
 }
 
 .restartDiv button {
@@ -95,7 +95,7 @@ canvas {
 
 .gameOverWin {
   width: 900px;
-  height: 1500px;
+  height: 100vh;
   position: absolute;
   animation: myAnim1 1.5s ease-in-out 0s 1 normal forwards;
   top: 0;
@@ -129,6 +129,19 @@ canvas {
 
 }
 
+#restartDIV button{
+  z-index: 9;
+  position: absolute;
+  bottom: 10%;
+  cursor: pointer;
+  margin-top: 25px;
+  border-radius: 8px;
+  font-size: 1.4em;
+  padding: 25px;
+  background-color: rgb(238, 145, 71);
+  color: aliceblue;
+}
+
 .canvasDiv {
     display: flex;
   justify-content: center;
@@ -148,8 +161,8 @@ canvas {
   }
 
   .explainDiv  {
-margin-left: 200px;
-  margin-right: 200px;
+margin-left: unset !important;
+  margin-right: unset !important;
   }
 
 }

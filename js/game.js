@@ -25,7 +25,7 @@ function checkIfEndscreen() {
 
     let checkEndScreen =  setInterval(() => {
       if (world.lose || world.win) {
-        document.getElementById('restartBtn').classList.remove('d-none');
+          document.getElementById('restartDIV').classList.remove('d-none');
         clearInterval (checkEndScreen)
       }
     }, 100);
